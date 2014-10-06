@@ -2,13 +2,26 @@
 <html>
 <head>
   <title>TodoList</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
 <%= yield %>
 
+<hr>
+
+<% if logged_in? %>
+You are logged in as <%= current_user.username %>
+  <form action="<%= session_url %>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log Out">
+  </form>
+<% end %>
 </body>
 </html>
