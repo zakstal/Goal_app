@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root to: "users#new"
 
-  resource :user, only: [:new, :create] do
-    resources :goals, only: [:index, :show, :new]
+  resources :users, only: [:new, :create, :show, :index] do
+    resources :goals, only: [:index, :new]
   end
 
-  resources :goals, only: [:create, :edit, :update, :destroy]
+  resources :goals, only: [:create, :edit, :show, :update, :destroy]
 
   resource :session, only: [:new, :create, :destroy]
 end

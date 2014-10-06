@@ -35,4 +35,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_current_user
+    unless session[:session_token] == current_user.session_token
+      flash.now[:errors] = ['You cannot do this!']
+      redirect_to user_goals_url(current_user)
+    end
+  end
+
 end

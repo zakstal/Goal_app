@@ -1,4 +1,4 @@
-<h1>All Goals for <%= current_user.username %></h1>
+<h1>All Goals for <%= @user.username %></h1>
 <table>
   <tr>
     <th>Title</th>
@@ -11,7 +11,7 @@
   </tr>
 <% @goals.each do |goal| %>
 <tr>
-  <td><a href="<%= user_goal_url(goal) %>"><%= goal.title %></a></td>
+  <td><a href="<%= goal_url(goal) %>"><%= goal.title %></a></td>
   <td><%= goal.description %></td>
   <td><%= goal.status %></td>
   <td><%= goal.privacy %></td>
