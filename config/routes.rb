@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :goals, only: [:create, :edit, :show, :update, :destroy]
 
   resource :session, only: [:new, :create, :destroy]
+
+  resources :comments, only: :create
 end

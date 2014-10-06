@@ -36,5 +36,19 @@
 
 </table>
 
+<% @user.comments.each do |comment| %>
+  <%= comment %>
+  <%= comment.commentable %>
+<% end %>
+
+<br>
+Add a comment
+<form action="<%= comments_url %>" method="POST">
+  <%= auth_token %>
+  <input type="hidden" name="url_param" value="<%= user_goals_url(@user.id) %>">
+  <textarea name="comment[content]"></textarea>
+  <input type="submit" value="Add Comment">
+</form>
+
 <a href="<%= new_user_goal_url %>">Create Goal</a>
 <br>
