@@ -1,0 +1,40 @@
+<h1>All Goals for <%= current_user.username %></h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Privacy</th>
+    <th>Completed?</th>
+    <th>Delete?</th>
+
+  </tr>
+<% @goals.each do |goal| %>
+<tr>
+  <td><a href="<%= user_goal_url(goal) %>"><%= goal.title %></a></td>
+  <td><%= goal.description %></td>
+  <td><%= goal.status %></td>
+  <td><%= goal.privacy %></td>
+  <td>
+  <form action="<%= goal_url(goal) %>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="goal[status]" value="COMPLETED">
+    <input type="submit" value="Complete">
+  </form>
+  </td>
+  <td>
+    <form action="<%= goal_url(goal) %>" method="POST">
+      <%= auth_token %>
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete">
+    </form>
+  </td>
+</tr>
+
+<% end %>
+
+</table>
+
+<a href="<%= new_user_goal_url %>">Create Goal</a>
+<br>

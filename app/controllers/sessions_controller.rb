@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       render :new
     else
       login!(@user)
-      #redirect
+      redirect_to user_goals_url
     end
   end
 

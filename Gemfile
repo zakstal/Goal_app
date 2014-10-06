@@ -44,12 +44,15 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem 'factory_girl_rails'
 
 end
 
 group :test do
   gem 'guard-rspec'
   gem 'capybara'
+  gem 'faker'
+  gem 'launchy'
 end
 
 gem 'bcrypt'
